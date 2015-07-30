@@ -1,0 +1,12 @@
+
+/=
+sub_def[:name: final]
+-->
+== {name}[[{name}]]
+=/
+
+/=
+sub[:name:]
+-->
+<<{name}>>
+=/

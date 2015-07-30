@@ -1,0 +1,69 @@
+= adoc_cmd_ext
+
+AsciiDoc has out of the box no functionality like +\newcommand+ from LaTeX.
+This project implements a Lua script and module that allows to define and use
+a similar functionality for AsciiDoc files.
+The Lua script works as a preprocessor that generates AsciiDoc files.
+
+IMPORTANT: Both, the library and the script, just work.
+They are created for private usage and only offer my minumum requirements.
+
+== Usage
+
+First you should define one or more commandos inside a seperate file.
+
+acmd-file:
+[source]
+----
+/=
+func_def[:name:]
+-->
+==== {name}[[{name}]]
+=/
+
+/= func[:name:] --> <<{name}>> =/
+----
+
+After the definition you can use the commandos inside an AsciiDoc file.
+
+adoc-file:
+[source]
+----
+/:func_def[reset_duration_error_c]
+...
+/:func[reset_duration_error_c]
+----
+
+Now you can use the Lua script to apply the commands on the adoc-file.
+
+----
+$ adoc_cmd_ext acmd-file adoc-file result-file
+----
+
+The result in this test case will look like the following file.
+
+result-file:
+[source]
+----
+==== reset_duration_error_c[[reset_duration_error_c]]
+...
+<<reset_duration_error_c>>
+----
+
+You can process this file now with your existing AsciiDoc tool chain.
+
+== Installation
+
+Clone this repository and use LuaRocks with the following command.
+
+----
+luarocks make dist/adoc_cmd_ext-scm-0.rockspec
+----
+
+== Discussions
+
+* http://stackoverflow.com/questions/30514862/has-asciidoc-preprocessor-macros
+
+* http://discuss.asciidoctor.org/has-asciidoc-preprocessor-macros-td3282.html
+
+* https://groups.google.com/forum/#!topic/asciidoc/Suqj6EtlIfs

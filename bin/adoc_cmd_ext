@@ -1,0 +1,32 @@
+#!/usr/bin/env lua
+local apply_cmd_on_adoc = require( "adoc_cmd_ext.apply_cmd_on_adoc" )
+
+local usage = [[
+$ adoc_cmd_ext acmd-file adoc-file result-file]]
+
+local function openfile( filename, mode )
+   mode = mode or "r"
+   local file, err = io.open( filename, mode )
+   if err then
+      print( err )
+      os.exit( EXIT_FAILURE )
+   end
+end
+
+--------------------------------------------------------------------------------
+
+if #arg ~= 3 then
+   print( "ERROR: adoc_cmd_ext requires 3 arguments" )
+   print( usage )
+   os.exit( EXIT_FAILURE )
+end
+
+local cmdFileStr = openfile( arg[ 1 ] ):read( "*a" )
+
+local adocFileStr = openfile( arg[ 2 ] ):read( "*a" )
+
+local result = apply_cmd_on_adoc( cmdFileStr, adocFileStr )
+
+local output = openfile( arg[ 3 ], "w" )
+
+output:write( result )

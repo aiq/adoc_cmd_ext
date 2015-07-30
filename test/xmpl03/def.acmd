@@ -1,0 +1,7 @@
+
+/=
+sub_def[:name: final]
+-->
+== {name}[[{name}]]
+=/
+
