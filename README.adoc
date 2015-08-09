@@ -5,7 +5,7 @@ This project implements a Lua script and module that allows to define and use
 a similar functionality for AsciiDoc files.
 The Lua script works as a preprocessor that generates AsciiDoc files.
 
-IMPORTANT: Both, the library and the script, just work.
+NOTE: Both, the library and the script, just work.
 They are created for private usage and only offer my minumum requirements.
 
 == Usage
