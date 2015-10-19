@@ -54,7 +54,15 @@ You can process this file now with your existing AsciiDoc tool chain.
 
 == Installation
 
-Clone this repository and use LuaRocks with the following command.
+To install the version 0.1.0 of adoc_cmd_ext use LuaRocks with the following line.
+
+----
+luarocks install adoc_cmd_ext
+----
+
+
+If you want to use the current development version, clone this repository and use
+LuaRocks with the following command.
 
 ----
 luarocks make dist/adoc_cmd_ext-scm-0.rockspec
